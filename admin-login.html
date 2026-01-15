@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body style="background:#0d0d0d;color:white;font-family:Arial;text-align:center;">
+<h2>Admin Login</h2>
+<input id="pass" type="password" placeholder="Password"><br><br>
+<button onclick="login()">Login</button>
+<script>
+function login(){
+  if(pass.value==="subfast123"){
+    localStorage.setItem("admin","true");
+    window.location="admin-panel.html";
+  } else { alert("Wrong password"); }
+}
+</script>
+</body>
+</html>

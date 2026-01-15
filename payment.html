@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head><title>Payment</title></head>
+<body style="background:#0d0d0d;color:white;font-family:Arial;text-align:center;">
+<h2>Payment</h2>
+<p>UPI: lavyanshbosshere@fam</p>
+<p>USDT: 0x4395819562A63DD4EEe38D0C87cd351b6d035092</p>
+
+<input id="name" placeholder="Name"><br><br>
+<input id="email" placeholder="Email"><br><br>
+<input id="utr" placeholder="UTR / TXID"><br><br>
+<textarea id="notes" placeholder="Order details"></textarea><br><br>
+
+<button onclick="submitOrder()">Submit</button>
+
+<script>
+function submitOrder(){
+  let name=name.value, email=email.value, utr=utr.value, notes=notes.value;
+  if(!name||!email||!utr){alert("Fill all fields");return;}
+  if(!/^[0-9A-Za-z]{8,}$/.test(utr)){alert("Invalid UTR");return;}
+
+  let amount=100;
+  let order={name,email,utr,notes,amount,status:"Pending",time:new Date().toLocaleString()};
+  let orders=JSON.parse(localStorage.getItem("orders"))||[];
+  orders.push(order);
+  localStorage.setItem("orders",JSON.stringify(orders));
+
+  let balance=Number(localStorage.getItem("balance"))||3000;
+  balance-=amount;
+  localStorage.setItem("balance",balance);
+
+  alert("Order Submitted Successfully!");
+}
+</script>
+</body>
+</html>
